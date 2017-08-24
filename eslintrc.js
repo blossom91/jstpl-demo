@@ -14,15 +14,15 @@ module.exports = {
         'html'
     ],
     // check if imports actually resolve
-    'settings': {
+    settings: {
         'import/resolver': {
-            'webpack': {
-                'config': 'build/webpack.base.conf.js'
+            webpack: {
+                config: 'build/webpack.base.conf.js'
             }
         }
     },
     // add your custom rules here
-    'rules': {
+    rules: {
         // don't require .vue extension when importing
         // 'import/extensions': ['error', 'always', {
         //     'js': 'never',
@@ -35,7 +35,7 @@ module.exports = {
          */
 
         // disallow unnecessary parentheses
-        'no-extra-parens': ['error', 'all', {'nestedBinaryExpressions': false}],
+        'no-extra-parens': ['error', 'all', { nestedBinaryExpressions: false }],
 
         // disallow negating the left operand of relational operators
         'no-unsafe-negation': 'error',
@@ -159,7 +159,7 @@ module.exports = {
         'block-spacing': 'error',
 
         // enforce consistent brace style for blocks
-        'brace-style': ['error', '1tbs', {'allowSingleLine': true}],
+        'brace-style': ['error', '1tbs', { allowSingleLine: true }],
 
         // require or disallow trailing commas
         'comma-dangle': 'error',
@@ -177,7 +177,7 @@ module.exports = {
         'func-call-spacing': 'error',
 
         // enforce consistent indentation
-        indent: ['error', 4, {SwitchCase: 1}],
+        indent: ['error', 4, { SwitchCase: 1 }],
 
         // enforce the consistent use of either double or single quotes in JSX attributes
         'jsx-quotes': 'error',

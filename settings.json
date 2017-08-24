@@ -1,0 +1,58 @@
+{
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Monaco",
+    "files.autoSave": "onWindowChange",
+    "files.associations": {
+        "*.vue": "vue",
+        "*.ejs": "html",
+        "*.js": "javascript"
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.options": {
+        "plugins": ["html"],
+        "extensions": [
+            ".js",
+            ".vue"
+        ]
+    },
+    "eslint.validate": [
+        "javascript",
+        "html",
+        "vue",
+        "vue-html"
+    ],
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true
+    },
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "vue": "html",
+        "vue-html": "html"
+    },
+    "git.confirmSync": false,
+    "vsicons.projectDetection.autoReload": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorBlinking": "smooth",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.activityBar.visible": true,
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+    "editor.codeLens": true,
+    "editor.snippetSuggestions": "top",
+    "workbench.startupEditor": "newUntitledFile",
+    "sync.gist": "84a36ec9e2798bcc8c5a617474b59265",
+    "sync.lastUpload": "2017-08-24T08:10:26.717Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false
+}

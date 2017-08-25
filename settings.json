@@ -33,16 +33,5 @@
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "workbench.iconTheme": "vscode-icons",
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-    "sync.gist": "84a36ec9e2798bcc8c5a617474b59265",
-    "sync.lastUpload": "2017-08-25T07:06:52.827Z",
-    "sync.autoDownload": false,
-    "sync.autoUpload": false,
-    "sync.lastDownload": "",
-    "sync.forceDownload": false,
-    "sync.anonymousGist": false,
-    "sync.host": "",
-    "sync.pathPrefix": "",
-    "sync.quietSync": false,
-    "sync.askGistName": false
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}"
 }

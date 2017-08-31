@@ -37,7 +37,7 @@
 1. Auto Rename Tag
 2. CSS Peek
 3. ESLint (需要配置`.eslintrc.js`)
-4. HTML CSS Support
+4. atom javascript snippets
 5. HTML Snippets
 6. htmltagwrap
 7. open-in-browser
@@ -46,6 +46,9 @@
 10. Sass
 11. Vetur
 12. vscode-icons
+13. beautify
+14. code runner
+15. go
 
 
 # iterm2

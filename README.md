@@ -16,6 +16,11 @@
 8. open-in-browser
 9. script
 10. chinese(汉化包)
+11. atom-beautify
+12. atom-ternjs
+13. language-babel
+14. pigments
+15. linter linter-eslint
 
 # Vscode
 

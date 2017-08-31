@@ -35,9 +35,7 @@
     "workbench.iconTheme": "vscode-icons",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "workbench.activityBar.visible": false,
-    "workbench.startupEditor": "newUntitledFile",
     "window.openFilesInNewWindow": "on",
     "workbench.editor.enablePreview": false,
-    "editor.snippetSuggestions": "top",
-    "workbench.colorTheme": "One Dark Pro"
+    "editor.snippetSuggestions": "top"
 }

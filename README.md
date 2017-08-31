@@ -46,3 +46,9 @@
 10. Sass
 11. Vetur
 12. vscode-icons
+
+
+# iterm2
+
+> 安装 oh my zsh
+> profiles => colors => 改为(solarized dark) && text => 取消勾选(Draw bold text in bright colors)

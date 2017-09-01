@@ -49,6 +49,10 @@
 13. beautify
 14. code runner
 15. go
+16. vue2 snippets
+17. jquery code snippets
+18. bootstrap 3 snippets
+19. better toml
 
 
 # iterm2

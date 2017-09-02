@@ -37,5 +37,7 @@
     "workbench.activityBar.visible": false,
     "window.openFilesInNewWindow": "on",
     "workbench.editor.enablePreview": false,
-    "editor.snippetSuggestions": "top"
+    "editor.snippetSuggestions": "top",
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "workbench.colorTheme": "One Dark Pro"
 }

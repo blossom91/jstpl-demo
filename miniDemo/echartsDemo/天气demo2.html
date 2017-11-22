@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>天气预报</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style media="screen">
+            .tq {
+                display: none;
+            }
+        </style>
+        <script src="js/lib/echarts.min.js"></script>
+        <script src='js/lib/jquery.min.js'></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-3 col-xs-8 col-xs-offset-1" >
+                    <input id="city" type="text" class="form-control" placeholder="城市名">
+                </div>
+
+                <button id='cx' type="button" class="btn btn-primary active col-md-1 col-xs-2">提交</button>
+            </div>
+        </div>
+        <div class="tq"></div>
+        <script>
+        const documentWidth = window.screen.availWidth
+        const documentHeight = window.screen.availHeight
+
+        var automargin = function() {
+            if (documentWidth >= 960) {
+                $('.container-fluid').css('margin-top','90px')
+            } else {
+                $('.container-fluid').css('margin-top','60px')
+            }
+        }
+
+        var getFormax = function(city) {
+            var a = []
+            var request = {
+                type : "get",
+                async : false,
+                url : `https://free-api.heweather.com/v5/forecast?city=${city}&key=30673095b0f647e2992f5c3b5e606371`,
+                success : function(r){
+                  a.push(Number(r.HeWeather5[0].daily_forecast[0].tmp.max))
+                  a.push(Number(r.HeWeather5[0].daily_forecast[1].tmp.max))
+                  a.push(Number(r.HeWeather5[0].daily_forecast[2].tmp.max))
+              }
+            }
+            $.ajax(request)
+            console.log(a);
+            return a
+        }
+
+        var getFormin = function(city) {
+            var a = []
+            var request = {
+                type : "get",
+                async : false,
+                url : `https://free-api.heweather.com/v5/forecast?city=${city}&key=30673095b0f647e2992f5c3b5e606371`,
+                success : function(r){
+                  a.push(Number(r.HeWeather5[0].daily_forecast[0].tmp.min))
+                  a.push(Number(r.HeWeather5[0].daily_forecast[1].tmp.min))
+                  a.push(Number(r.HeWeather5[0].daily_forecast[2].tmp.min))
+              }
+            }
+            $.ajax(request)
+            return a
+        }
+
+        var chartForWeather = function(city) {
+            var myChart = echarts.init(document.querySelector('.tq'))
+            var options = function() {
+                option = {
+                    title: {
+                        text: `${city}未来三天气温变化`,
+                        subtext: ''
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:['最高气温','最低气温']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            dataView: {readOnly: false},
+                            magicType: {type: ['line', 'bar']},
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis:  {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['今天','明天','后天']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} °C'
+                        }
+                    },
+                    series: [
+                        {
+                            name:'最高气温',
+                            type:'line',
+                            data:getFormax(city),
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    // {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'最低气温',
+                            type:'line',
+                            data:getFormin(city),
+                            markPoint: {
+                                // data: [
+                                //     {name: '周最低', value: -2, xAxis: 1, yAxis: -2}
+                                // ]
+                                data: [
+                                    // {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'},
+                                    // [{
+                                    //     symbol: 'none',
+                                    //     x: '90%',
+                                    //     yAxis: 'max'
+                                    // }, {
+                                    //     symbol: 'circle',
+                                    //     label: {
+                                    //         normal: {
+                                    //             position: 'start',
+                                    //             formatter: '最大值'
+                                    //         }
+                                    //     },
+                                    //     type: 'max',
+                                    //     name: '最高点'
+                                    // }]
+                                ]
+                            }
+                        }
+                    ]
+                };
+                return option
+            }
+
+            myChart.setOption(options())
+            window.onresize = myChart.resize
+        }
+
+        var chartForWeathermin = function(city) {
+            var myChart = echarts.init(document.querySelector('.tq'))
+            var options = function() {
+                option = {
+                    title: {
+                        text: `${city}未来三天气温变化`,
+                        subtext: ''
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    // legend: {
+                    //     data:['最高气温','最低气温']
+                    // },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            // dataZoom: {
+                            //     yAxisIndex: 'none'
+                            // },
+                            // dataView: {readOnly: false},
+                            magicType: {type: ['line', 'bar']},
+                            // restore: {},
+                            // saveAsImage: {}
+                        }
+                    },
+                    xAxis:  {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['今天','明天','后天']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} °C'
+                        }
+                    },
+                    series: [
+                        {
+                            name:'最高气温',
+                            type:'line',
+                            data:getFormax(city),
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    // {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'最低气温',
+                            type:'line',
+                            data:getFormin(city),
+                            markPoint: {
+                                // data: [
+                                //     {name: '周最低', value: -2, xAxis: 1, yAxis: -2}
+                                // ]
+                                data: [
+                                    // {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'},
+                                    // [{
+                                    //     symbol: 'none',
+                                    //     x: '90%',
+                                    //     yAxis: 'max'
+                                    // }, {
+                                    //     symbol: 'circle',
+                                    //     label: {
+                                    //         normal: {
+                                    //             position: 'start',
+                                    //             formatter: '最大值'
+                                    //         }
+                                    //     },
+                                    //     type: 'max',
+                                    //     name: '最高点'
+                                    // }]
+                                ]
+                            }
+                        }
+                    ]
+                };
+                return option
+            }
+
+            myChart.setOption(options())
+            window.onresize = myChart.resize
+        }
+
+        var cityWeather = function() {
+            $('#cx').click(function() {
+                var map = $('#city').val()
+                if (!map) {
+                    alert('请输入正确的城市名')
+                } else {
+                    if (documentWidth >= 960) {
+                        $('.tq').css('display','block').css('height',documentHeight*0.5).css('margin',documentWidth*0.07)
+                        chartForWeather(map)
+                    } else {
+                        $('.tq').css('display','block').css('height',documentHeight*0.5).css('margin-top',documentWidth*0.3)
+                        chartForWeathermin(map)
+                    }
+                }
+            })
+        }
+
+        var _main = function() {
+             automargin()
+             cityWeather()
+        }
+
+        _main()
+        </script>
+    </body>
+</html>

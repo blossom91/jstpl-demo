@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>todolist</title>
+        <style>
+            body{
+                margin: 0px;
+                padding: 0px;
+                overflow: hidden;
+            }
+
+            #todoBackground {
+                position:absolute;
+                z-index:-1;
+                width:100%;
+                height:100%;
+                top:0px;
+                left:0px;
+            }
+
+            .todolist {
+                width: 100%;
+                height: 600px;
+            }
+
+            .todolist header {
+                width: 100%;
+                height: 60px;
+                top: 0px;
+                position: fixed;
+                z-index: 1;
+                background-color: rgba(238,238,238,0.5);
+            }
+
+            .todolist header form {
+                width: 420px;
+                height: 80px;
+                margin: auto auto;
+                padding-top: 10px;
+            }
+
+            .listValue {
+                width: 300px;
+                height: 30px;
+                border-style:none;
+                border-radius: 5px;
+            }
+
+            .addList {
+                width: 100px;
+                height: 30px;
+                margin: auto auto;
+                color: white;
+                border-radius: 8px;
+                background-color: mediumseagreen;
+                border-style: none;
+            }
+
+            .noteList {
+                margin-top: 80px;
+            }
+
+            .noteList ul {
+                list-style: none;
+            }
+
+            .noteList ul time {
+                font-size: 0.8em;
+                position: relative;
+                top: -8px;
+            }
+
+            .noteList ul img {
+                width: 28px;
+                height: 28px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: none;
+            }
+
+
+            .noteList ul li:hover img {
+                display: block;
+            }
+
+            .todoLiList {
+                width: 160px;
+                height: 180px;
+                float: left;
+                margin-left: 80px;
+                margin-top: 40px;
+                padding: 20px 15px;
+                border-radius: 10px 10px;
+                background-color: cadetblue;
+                word-wrap: break-word;
+                overflow: scroll;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="todolist">
+            <header>
+                <form>
+                    <input class="listValue" type="input" name="name" value="">
+                    <button class="addList" type="button" name="button">添加便签</button>
+                </form>
+            </header>
+            <div class="noteList">
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <div id="todoBackground">
+            <img src="background.jpg" width="100%" height="100%"/>
+        </div>
+    </body>
+    <script>
+        var e = function(selector) {
+            return document.querySelector(selector)
+        }
+
+        var es = function(selector) {
+            return document.querySelectorAll(selector)
+        }
+
+        var bindEvent = function(element, eventName, callback) {
+            element.addEventListener(eventName, callback)
+        }
+
+        var bindAll = function(selector, eventName, callback) {
+            var elements = document.querySelectorAll(selector)
+            for(var i = 0; i < elements.length; i++) {
+                var e = elements[i]
+                bindEvent(e, eventName, callback)
+            }
+        }
+
+        var appendHtml = function(element, html) {
+            element.insertAdjacentHTML('beforeend', html)
+        }
+
+        var time = function(z) {
+            if (z === undefined) { z = new Date() }
+            var han = '日一二三四五六'
+            var Year   = z.getFullYear()
+            var Month  = z.getMonth() + 1
+            var Day    = z.getDate()
+            var Hour   = z.getHours()
+            var Minute = z.getMinutes()
+            var Second = z.getSeconds()
+            var Week   = han[z.getDay()]
+            if ( String(Month).length === 1) {
+                Month = '0' + Month
+            }
+            return `${Month}月${Day}日 星期${Week}
+            ${Hour}时${Minute}分`
+        }
+
+        var strColor = [
+            "rgba(219,112,147,0.9)",
+            "rgba(169,169,169,0.9)",
+            "rgba(255,165,0,0.9)",
+            "rgba(95,158,160,0.9)",
+            "rgba(255,192,203,0.9)",
+        ]
+
+        var colorFor = function() {
+            var a = es('li')
+            for (var i = 0; i < a.length; i++) {
+                var liRotate = `rotate(${parseInt((Math.random()*100)%20-10)}deg)`;
+                a[i].style.transform = liRotate
+                var liColor = strColor[parseInt(Math.random() * 10 % strColor.length)];
+                a[i].style.backgroundColor = liColor
+            }
+        }
+
+        var todoList = []
+        // localStorage.clear()
+        //设立储存
+        var saveForTodo = function(t) {
+            localStorage.todo = JSON.stringify(t)
+        }
+        //读取
+        var loadForTodo = function() {
+            if (localStorage.todo === undefined || localStorage.todo === '[]') {
+                localStorage.todo = JSON.stringify([{
+                    time : '幸福一万年',
+                    value : '给你留个言,愿你天天开心',
+                }])
+            }
+            return JSON.parse(localStorage.todo)
+        }
+
+        //添加todo
+        var addTodo = function() {
+            bindEvent(e('.addList'), 'click', function() {
+                var s = e('.listValue').value
+                if(s == ""){return}
+                var nowTime = time()
+                var t = `
+                <li class='todoLiList'>
+                <time>${nowTime}</time><br>
+                <span>${s}</span>
+                <img src="关闭.png"/>
+                </li>
+                `
+                var todoValue = {
+                    time : nowTime,
+                    value : s,
+                }
+                todoList.push(todoValue)
+                saveForTodo(todoList)
+                appendHtml(e('.noteList ul'),t)
+                e('.listValue').value = ''
+                colorFor()
+            })
+            bindEvent(e('.listValue'), 'keydown', function(event) {
+                var self = event.keyCode
+                if (self == 13) {
+                    //阻止默认事件
+                    event.preventDefault()
+                    var s = e('.listValue').value
+                    if(s == ""){
+                        event.target.blur()
+                        return
+                    }
+                    var nowTime = time()
+                    var t = `
+                    <li class='todoLiList'>
+                    <time>${nowTime}</time><br>
+                    <span>${s}</span>
+                    <img src="关闭.png"/>
+                    </li>
+                    `
+                    var todoValue = {
+                        time : nowTime,
+                        value : s,
+                    }
+                    todoList.push(todoValue)
+                    saveForTodo(todoList)
+                    appendHtml(e('.noteList ul'),t)
+                    event.target.blur()
+                    e('.listValue').value = ''
+                    colorFor()
+                }
+            })
+        }
+
+        //操作todo
+        var updataTodo = function() {
+            bindEvent(e('.noteList ul'), 'click', function(event) {
+                var self = event.target
+                var todoul = e('.noteList ul')
+                if (self.parentElement == todoul) {
+                    var litime = self.children[0]
+                    var litext = self.children[2]
+                    litext.setAttribute('contenteditable',true)
+                    litext.focus()
+                    bindEvent(litext, 'blur', function(event) {
+                        for (var i = 0; i < todoList.length; i++) {
+                            if (todoList[i].time == litime.innerHTML ) {
+                               todoList[i].value = event.target.innerHTML
+                               saveForTodo(todoList)
+                               break
+                            }
+                        }
+                        litext.setAttribute('contenteditable',false)
+                    })
+                    bindEvent(litext, 'keydown', function(event) {
+                        var self = event.keyCode
+                        if (self == 13) {
+                            //阻止默认事件
+                            event.preventDefault()
+                            litext.blur()
+                            for (var i = 0; i < todoList.length; i++) {
+                                if (todoList[i].time == litime.innerHTML ) {
+                                   todoList[i].value = event.target.innerHTML
+                                   saveForTodo(todoList)
+                                   break
+                                }
+                            }
+                            litext.setAttribute('contenteditable',false)
+                        }
+                    })
+                } else {
+                    var time = self.parentElement.children[0]
+                    var text = self.parentElement.children[2]
+                    var deleteButton = self.parentElement.children[3]
+                    //可编辑
+                    if (self == text ) {
+                        text.setAttribute('contenteditable',true)
+                        //获取焦点
+                        text.focus()
+                    } //删除
+                    else if (self == deleteButton) {
+                        for (var i = 0; i < todoList.length; i++) {
+                            if (todoList[i].value == text.innerHTML) {
+                                todoList.splice(i,1)
+                                saveForTodo(todoList)
+                                self.parentElement.remove()
+                                break
+                            }
+                        }
+                    }
+                    // 不可编辑
+                    bindEvent(text, 'blur', function(event) {
+                        for (var i = 0; i < todoList.length; i++) {
+                            if (todoList[i].time == time.innerHTML ) {
+                               todoList[i].value = event.target.innerHTML
+                               saveForTodo(todoList)
+                               break
+                            }
+                        }
+                        text.setAttribute('contenteditable',false)
+                    })
+                    bindEvent(text, 'keydown', function(event) {
+                            var self = event.keyCode
+                            if (self == 13) {
+                                //阻止默认事件
+                                event.preventDefault()
+                                text.blur()
+                                for (var i = 0; i < todoList.length; i++) {
+                                    if (todoList[i].time == time.innerHTML ) {
+                                       todoList[i].value = event.target.innerHTML
+                                       saveForTodo(todoList)
+                                       break
+                                    }
+                                }
+                                text.setAttribute('contenteditable',false)
+                            }
+                        })
+                }
+            })
+        }
+
+        //页面加载
+        var loadAdd = function() {
+            todoList = loadForTodo()
+            for (var i = 0; i < todoList.length; i++) {
+                var t = `
+                <li class='todoLiList'>
+                <time>${todoList[i].time}</time>
+                <br>
+                <span>${todoList[i].value}</span>
+                <img src="关闭.png"/>
+                </li>
+                `
+                appendHtml(e('.noteList ul'),t)
+            }
+        }
+
+        var __main = function() {
+            loadAdd()
+            colorFor()
+            addTodo()
+            updataTodo()
+        }
+
+        __main()
+    </script>
+</html>

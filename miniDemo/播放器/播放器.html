@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>播放器</title>
+        <style>
+            ul li {
+                list-style: none;
+            }
+
+            input[type=range] {
+                -webkit-appearance: none;
+                width: 60%;
+                border-radius: 2px; /*这个属性设置使填充进度条时的图形为圆角*/
+            }
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+            }
+
+             /*给滑动轨道(track)添加样式*/
+            input[type=range]::-webkit-slider-runnable-track {
+                height: 4px;
+                border-radius: 2px; /*将轨道设为圆角的*/
+                background: #555555;
+            }
+            input[type=range]::-moz-range-progress {
+                height: 4px;
+                border-radius: 2px; /*将轨道设为圆角的*/
+                background: rgba(4,154,12,0.2);
+            }
+            /*原始的控件获取到焦点时，会显示包裹整个控件的边框，所以还需要把边框取消。*/
+            input[type=range]:focus {
+                outline: none;
+            }
+             /*给滑块(thumb)添加样式*/
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 14px;
+                width: 14px;
+                border: 0.1px solid rgba(0, 0, 0, 0.1);
+                margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+                background: #f1f1f1;
+                border-radius: 50%; /*外观设置为圆形*/
+                box-shadow: 0 0 8px #ddd; /*添加底部阴影*/
+            }
+
+            .musicPack .songListShow {
+                color: red;
+            }
+
+            .musicPack {
+                width: 50%;
+                height: 500px;
+                margin: 0 auto;
+                text-align: center;
+                color: rgb(104, 113, 116);
+                font-size: 18px;
+                font-weight: 480;
+            }
+
+            .musicPack .musciHeader h3 {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .musicPack .currentTime {
+                position: relative;
+                left: -140px;
+            }
+
+            .musicPack .durationTime {
+                position: relative;
+                right: -140px;
+            }
+
+            .musicPack .musicLine {
+                width: 55%;
+                height: 1px;
+                background: #8e8e8e;
+                margin: 10px auto;
+            }
+
+            .musicPack #musicVolume {
+                width: 20%;
+                position: relative;
+                top: 5px;
+                left: -11px;
+            }
+
+            .musicPack .songList ul li{
+                padding: 4px 0;
+                position: relative;
+                left: -18px;
+                top: 10px;
+            }
+
+            .musicPack .songList ul li:hover {
+                color: #6495ED;
+            }
+
+            .musicPack .musicLeft  {
+                position: relative;
+                left: -50px;
+                top: -7px;
+            }
+
+            .musicPack .musicRight  {
+                position: relative;
+                right: -50px;
+                top: -7px;
+            }
+
+            .musicPack .playWay {
+                position: absolute;
+                top: 380px;
+                right: 475px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="musicPack">
+            <div class="musciHeader">
+                <h3>Music and Life</h3>
+                <input id="progress" type="range" min="0" step="0.5"><br>
+                <span class="currentTime"></span>
+                <span class="durationTime"></span>
+                <div class="musicLine"></div>
+                <div class="songList" >
+                    <ul></ul>
+                </div>
+                <img src="images/声音.png" style="position: relative;top:10px;left:-10px;"/>
+                <input id="musicVolume" type="range" max='1' min="0" step="0.0002" value="0.5">
+                <div class="musicLine" style=""></div>
+            </div>
+            <audio id="audio">
+                <source src="">
+            </audio>
+            <div>
+                <img class="musicLeft" src="images/左.png" />
+                <img class='musicPlay' data-src = 'images/播放.png' src="images/暂停.png" alt="" />
+                <img class="musicRight" src="images/右.png"/>
+                <img class="playWay" data-src="images/列表循环.png" src="images/列表循环.png" alt="" />
+                <div class="musicLine" style=""></div>
+            </div>
+        </div>
+        <script>
+        //常用函数
+        var e = function(element) {
+            return document.querySelector(element)
+        }
+
+        var es = function(element) {
+            return document.querySelectorAll(element)
+        }
+
+        var bindEvent = function(element, eventName, callback) {
+            element.addEventListener(eventName, callback)
+        }
+
+        var bindAll = function(selector, eventName, callback) {
+            var elements = document.querySelectorAll(selector)
+            for(var i = 0; i < elements.length; i++) {
+                var e = elements[i]
+                bindEvent(e, eventName, callback)
+            }
+        }
+
+        //播放方式函数
+
+        var __main = function() {
+            //歌曲列表
+            var songs = [
+                {
+                    src : '1.mp3',
+                    name : '陈一发儿 - 阿婆说',
+                },
+                {
+                    src : '2.mp3',
+                    name : '陈一发儿 - 童话镇',
+                },
+                {
+                    src : '3.mp3',
+                    name : '光宗信吉 - I SAY YES',
+                },
+                {
+                    src : '4.mp3',
+                    name : '骆集益 - 回梦游仙',
+                },
+                {
+                    src : '5.mp3',
+                    name : '骆集益 - 御剑江湖',
+                },
+                {
+                    src : '6.mp3',
+                    name : '麦振鸿 - 莫失莫忘',
+                },
+            ]
+            var musicdq = function() {
+                audio.play()
+            }
+
+            var musiclb = function() {
+                e('.musicRight').click()
+            }
+
+            var musicsj = function() {
+                var n = parseInt(Math.random() * 10000) % songs.length
+                audio.src = 'music/' + songs[n].src
+            }
+            //绑定按钮
+            var audio = e('#audio')
+            //页面载入初始化
+            var musicLoad = function() {
+                audio.src = 'music/' + songs[0].src
+                audio.volume = 0.5
+                bindEvent(audio, 'ended', musiclb)
+                //歌单加入页面并绑定切歌功能
+                var songList = function(s) {
+                    for (var i = 0; i < s.length; i++) {
+                        var t =`
+                            <li data-name = '${s[i].name}' data-src = '${s[i].src}'>${s[i].name}</li>
+                        `
+                        e('.songList ul').insertAdjacentHTML('beforeend',t)
+                    }
+                    bindAll('.songList li','click',function(event) {
+                        var self = event.target.dataset.src
+                        audio.src = 'music/' + self
+                    })
+                }
+                songList(songs)
+            }
+            musicLoad()
+            //载入后初始化
+            bindEvent(audio, 'canplay', function() {
+                audio.play()
+                var now = audio.duration
+                var m = String(Math.floor(now / 60))
+                var s = String(Math.floor(now % 60))
+                if (m.length === 1) {
+                    m = '0' + m
+                }
+                if (s.length === 1) {
+                    s = '0' + s
+                }
+                e('.durationTime').innerHTML = `${m}:${s}`
+                e('#progress').max = parseInt(audio.duration) + ''
+                if (e('.songListShow') != null) {
+                    e('.songListShow').classList.remove('songListShow')
+                }
+                for (var i = 0; i < es('.songList li').length; i++) {
+                    if (es('.songList li')[i].dataset.src == audio.src.slice(-5)) {
+                        es('.songList li')[i].classList.add('songListShow')
+                        break
+                    }
+                }
+            })
+            //播放/暂停
+            bindEvent(e('.musicPlay'), 'click', function(event) {
+                var self = event.target.dataset.src
+                if (self == 'images/播放.png') {
+                    audio.pause()
+                    e('.musicPlay').src = 'images/播放.png'
+                    e('.musicPlay').dataset.src = 'images/暂停.png'
+                } else {
+                    audio.play()
+                    e('.musicPlay').src = 'images/暂停.png'
+                    e('.musicPlay').dataset.src = 'images/播放.png'
+                }
+            })
+            // 进度条
+            bindEvent(e('#progress'), 'change', function() {
+                audio.currentTime = e('#progress').value
+            })
+            //音量条
+            bindEvent(e('#musicVolume'), 'change', function() {
+                audio.volume =  e('#musicVolume').value
+            })
+            //计时器
+            bindEvent(audio, 'timeupdate', function() {
+                var now = parseInt(audio.currentTime)
+                var m = String(Math.floor(now / 60))
+                var s = String(Math.floor(now % 60))
+                if (m.length === 1) {
+                    m = '0' + m
+                }
+                if (s.length === 1) {
+                    s = '0' + s
+                }
+                e('.currentTime').innerHTML = `${m}:${s}`
+                e('#progress').value = parseInt(audio.currentTime) + ''
+            })
+            // 上一首
+            bindEvent(e('.musicLeft'), 'click', function() {
+                var next = ((parseInt(e('.songListShow').dataset.src.split('.')[0]) - 1) + songs.length - 1)  %  songs.length
+                audio.src = 'music/' + songs[next].src
+
+            })
+            //下一首
+            bindEvent(e('.musicRight'), 'click', function() {
+                var next = ((parseInt(e('.songListShow').dataset.src.split('.')[0]) - 1) + songs.length + 1)  %  songs.length
+                audio.src = 'music/' + songs[next].src
+            })
+            //播放方式
+            bindEvent(e('.playWay'),'click', function(event) {
+                var self = event.target.dataset.src
+                if (self == 'images/列表循环.png') {
+                    audio.removeEventListener('ended',musiclb)
+                    bindEvent(audio, 'ended', musicdq)
+                    e('.playWay').src = 'images/单曲循环.png'
+                    e('.playWay').dataset.src = 'images/单曲循环.png'
+                    return
+                } else if (self == 'images/单曲循环.png') {
+                    audio.removeEventListener('ended',musicdq)
+                    bindEvent(audio, 'ended', musicsj)
+                    e('.playWay').src = 'images/随机循环.png'
+                    e('.playWay').dataset.src = 'images/随机循环.png'
+                    return
+                } else {
+                    audio.removeEventListener('ended',musicsj)
+                    bindEvent(audio, 'ended', musiclb)
+                    e('.playWay').src = 'images/列表循环.png'
+                    e('.playWay').dataset.src = 'images/列表循环.png'
+                    return
+                }
+            })
+        }
+        __main()
+
+        //可以用dataset属性来设置音乐资料 这样就可以判断哪个li播放歌曲   也就可以直接通过歌名添加列表动态添加页面可取
+        </script>
+    </body>
+</html>

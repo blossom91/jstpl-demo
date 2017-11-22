@@ -1,0 +1,180 @@
+<!--<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小米轮播图</title>
+    <style>
+        .imgs > img{
+            display: none;
+        }
+        .imgs .imgShow {
+            display: block;
+        }
+        .dots>ul>li {
+            display: inline-block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+        .show {
+            background: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="slideShow" data-img=4 data-run=0>
+        <div class="imgs">
+            <img id="img-0" class="imgShow" src="images/1.jpg" alt="">
+            <img id="img-1" src="images/2.jpg" alt="">
+            <img id="img-2" src="images/3.jpg" alt="">
+            <img id="img-3" src="images/4.jpg" alt="">
+        </div>
+        <div class="imgRun">
+            <button id="left" data-run=-1></button>
+            <button id="right" data-run=1></button>
+        </div>
+        <div class="dots">
+            <ul>
+                <li id="dot-0" class="show"></li>
+                <li id="dot-1"></li>
+                <li id="dot-2"></li>
+                <li id="dot-3"></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var _main = function() {
+            var e = function(element) {
+                return document.querySelector(element)
+            }
+            var bindEvent = function(element, eventName, callback) {
+                element.addEventListener(eventName, callback)
+            }
+            var bindAll = function(selector, eventName, callback) {
+                var elements = document.querySelectorAll(selector)
+                for(var i = 0; i < elements.length; i++) {
+                    var e = elements[i]
+                    bindEvent(e, eventName, callback)
+                }
+            }
+            var imgrun = function(id) {
+                var a = e('.slideShow').dataset.run
+                var a1 = e('.slideShow').dataset.img
+                var a2 = e('#' + id).dataset.run
+                var next = (parseInt(a) + parseInt(a1) + parseInt(a2)) % parseInt(a1)
+                e('.slideShow').dataset.run = next
+                var c = e('.imgShow')
+                c.classList.remove('imgShow')
+                var c1 = e('#img-' + next)
+                c1.classList.add('imgShow')
+                var d = e('.show')
+                d.classList.remove('show')  
+                var d1 = e('#dot-' + next)
+                d1.classList.add('show')
+            }
+            bindEvent(e('#left'),'click',function() {
+                imgrun('left')
+            })
+            bindEvent(e('#right'),'click',function() {
+                imgrun('right')
+            })
+            bindAll('ul>li','mouseover',function() {
+                var self = event.target
+                var a = self.id.split('-')[1]
+                e('.slideShow').dataset.run = parseInt(a)
+                console.log(self,a)
+                var c = e('.imgShow')
+                c.classList.remove('imgShow')
+                var d = e('.show')
+                d.classList.remove('show')      
+                e('#img-'+ a).classList.add('imgShow')
+                self.classList.add('show')
+            })
+            var autoRun = setInterval(function() {
+                e('#right').click()
+            },3000)
+            bindEvent(e('.slideShow'),'mouseover',function() {
+                clearInterval(autoRun)
+            })
+            bindEvent(e('.slideShow'),'mouseout',function() {
+                clearInterval(autoRun)
+                autoRun = setInterval(function() {
+                e('#right').click()
+            },3000)
+            })
+        }
+        _main()
+    </script>
+</body>
+</html>-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>今天的日期</title>
+    <link rel="" type="" href="">
+    <style>
+
+    </style>
+</head>
+<body>
+    <a href=""></a>
+    <div class="time">
+
+    </div>
+    <div class="time2">
+
+    </div>
+    
+    <script>
+        var _time = function() {
+            var z = new Date()
+            var han = '日一二三四五六'
+            var week = han[z.getDay()]
+            var s =  `今天是星期${week}`
+            document.querySelector('.time').innerHTML = s
+        }
+        _time()
+        setInterval(function() {
+            var z1 = new Date().getTime()
+            var z2 = new Date('2017/12/31,24:00:00').getTime()
+            var year = new Date().getFullYear()
+            var a = (parseInt(z2) - parseInt(z1)) / 1000
+            var day = Math.floor(a / (3600 * 24))
+            var hour = Math.floor((a / 3600) % 24)
+            var minute = Math.floor((a / 60) % 60)
+            var ms = Math.floor(a % 60)
+            var s2 = `${year}还剩${day}天${hour}小时${minute}分${ms}秒`
+            `${}还剩${}天${}小时${}分${}秒`
+            document.querySelector('.time2').innerHTML = s2
+        },500)
+        var compare = function(nums, order) {
+            if(order == '<') {
+                return nums.sort(function(a,b) {
+                    return a - b
+                })
+            }
+            else if(order == '>') {
+                return nums.sort(function(a,b) {
+                    return b - a
+                })
+            }
+        }
+      src: src是读取某个文件替代自己
+      href: 跳转的某个地方,比如
+    </script>
+</body>
+</html>

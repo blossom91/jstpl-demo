@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>drag demo</title>
+        <style media="screen">
+            .containers {
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                border: 1px solid black;
+                line-height: 30px;
+                background-color: #fff;
+            }
+            .show {
+                display: none
+            }
+            .title {
+                text-align: center;
+                background-color: #ccc;
+            }
+            .container {
+                margin: 80px auto;
+                text-align: center;
+
+            }
+            .box {
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: red;
+                position: absolute;
+                display: none;
+            }
+        </style>
+        <script src='../../js/lib/jquery.min.js'></script>
+    </head>
+    <body>
+        <button  class="dl" type="button" name="button">登录</button>
+        <div class="containers show">
+            <div class="title">
+                哔哩哔哩
+            </div>
+            <div class="container">
+                登录:<input type="text" name="name" value=""><br>
+                密码:<input type="text" name="name" value=""><br>
+                <button class="qx" type="button" name="button">确认</button>
+                <button class="qx" type="button" name="button">取消</button>
+            </div>
+        </div>
+        <div class="box">
+
+        </div>
+        <script>
+            //自动居中
+            var autoCenter = function(e) {
+                var bodyW = document.documentElement.clientWidth
+                var bodyH = document.documentElement.clientHeight
+                var eW = e[0].offsetWidth
+                var eH = e[0].offsetHeight
+                e.css('left',(bodyW - eW)/2).css('top',(bodyH - eH)/2)
+            }
+
+            $('.dl').click(function(){
+                var e = $('.containers')
+                e.removeClass('show')
+                autoCenter(e)
+            })
+
+            $('.qx').click(function(){
+                $('.containers').addClass('show')
+            })
+
+
+            var moveFor = function() {
+                var x0 = 0
+                var y0 = 0
+                var ismove = false
+                $('.title').on('mousedown',function(e) {
+                     x0 = e.offsetX
+                     y0 = e.offsetY
+                    ismove = true
+                })
+
+                $(document).on('mousemove',function(e) {
+                    var bodyW = document.documentElement.clientWidth
+                    var bodyH = document.documentElement.clientHeight
+                    var conW = $('.containers')[0].offsetWidth
+                    var conH = $('.containers')[0].offsetHeight
+                    var x1 = e.pageX
+                    var y1 = e.pageY
+                    var movex = x1 - x0
+                    var movey = y1 - y0
+                    movex = Math.min(bodyW - conW,Math.max(0,movex))
+                    movey = Math.min(bodyH - conH,Math.max(0,movey))
+                    if (ismove) {
+                        $('.containers').css('left',movex).css('top',movey)
+                        // $('.box').css('left',x1).css('top',y1).css('display','block')
+                    }
+                }).on('mouseup',function(){
+                    ismove = false
+                    // $('.box').css('display','block')
+                })
+            }
+moveFor()
+        </script>
+    </body>
+</html>

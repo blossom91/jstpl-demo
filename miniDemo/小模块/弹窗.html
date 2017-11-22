@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>fe15work</title>
+    </head>
+    <body>
+        <div class="tc">
+            标题:<input class="title" type="type" name="name" value=""><br>
+            内容:<input class="message" type="type" name="name" value=""><br>
+            <button class="tc-tc" type="button" name="button">提交</button>
+        </div>
+        <script>
+        var bindEvent = function(element, eventName, callback) {
+            element.addEventListener(eventName, callback)
+        }
+        var e = function(selector) {
+            return document.querySelector(selector)
+        }
+        var es = function(selector) {
+            return document.querySelectorAll(selector)
+        }
+        const appendHtml = function(element, html) {
+            element.insertAdjacentHTML('beforeend', html)
+        }
+        var GuaAlert = function(title, message) {
+            const t = `
+            <div class="tc-container">
+                <div class="tc-titile">
+                    <span>${title}</span>
+                </div>
+                <div class="tc-message">
+                    <span>${message}</span>
+                </div>
+                <div class="yes">
+                    <button class='yes-yes'>OK</button>
+                </div>
+                <div class="no">
+                    <button class='no-no'>Cancel</button>
+                </div>
+            </div>
+            `
+            const csst = `
+            <style>
+                .tc-container {
+                    width: 200px;
+                    height: 150px;
+                    background-color: red;
+                    opacity: 0.8;
+                }
+                .tc-titile {
+                    text-align: center;
+                    font-size: 2em;
+                }
+                .tc-message {
+                    text-align: center;
+                    position:relative;
+                    top : 50%;
+                    transform: translateY(-250%);
+                }
+                .yes {
+                    position:relative;
+                    top: 55%;
+                    left: 20%;
+                    font-size: 1.5em;
+                }
+                .no {
+                    position:relative;
+                    top: 55%;
+                    left: 70%;
+                    transform: translateY(-100%);
+                    font-size: 1.5em;
+                }
+            </style>
+            `
+            appendHtml(e('head'),csst)
+
+            appendHtml(e('body'),t)
+        }
+        var GuaAlert2 = function(title) {
+            const t = `
+            <div class="tc-container">
+                <div class="tc-titile">
+                    <span>${title}</span>
+                </div>
+                <div class="tc-message">
+                    <input class="tc-input" type="type" name="name" value="">
+                </div>
+                <div class="yes">
+                    <button class='yes-yes'>OK</button>
+                </div>
+                <div class="no">
+                    <button class='no-no'>Cancel</button>
+                </div>
+            </div>
+            `
+            const csst = `
+            <style>
+                .tc-container {
+                    width: 400px;
+                    height: 300px;
+                    background-color: green;
+                    opacity: 0.8;
+                }
+                .tc-titile {
+                    text-align: center;
+                    font-size: 2em;
+                }
+                .tc-message {
+                    text-align: center;
+                    position:relative;
+                    top : 50%;
+                    transform: translateY(-250%);
+                }
+                .yes {
+                    position:relative;
+                    top: 55%;
+                    left: 20%;
+                    font-size: 1.5em;
+                }
+                .no {
+                    position:relative;
+                    top: 55%;
+                    left: 70%;
+                    transform: translateY(-100%);
+                    font-size: 1.5em;
+                }
+            </style>
+            `
+            appendHtml(e('head'),csst)
+
+            appendHtml(e('body'),t)
+        }
+        var GuaAlert3 = function(title) {
+            const t = `
+            <div class="tc-container">
+                <div class="tc-titile">
+                    <span>${title}</span>
+                </div>
+                <div class="tc-message">
+
+                </div>
+
+                <div class="no">
+                    <button class='no-no'>Cancel</button>
+                </div>
+            </div>
+            `
+            const csst = `
+            <style>
+                .tc-container {
+                    width: 400px;
+                    height: 300px;
+                    background-color: green;
+                    opacity: 0.8;
+                }
+                .tc-titile {
+                    text-align: center;
+                    font-size: 2em;
+                }
+                .tc-message {
+                    text-align: center;
+                    position:relative;
+                    top : 50%;
+                    transform: translateY(-250%);
+                }
+                .no {
+                    position:relative;
+                    top: 55%;
+                    left: 50%;
+                    font-size: 1.5em;
+                }
+            </style>
+            `
+            appendHtml(e('head'),csst)
+
+            appendHtml(e('body'),t)
+        }
+        var GuaPrompt = function(title) {
+            GuaAlert2(title)
+            bindEvent(e('.yes-yes'),'click',function(event){
+                let message = e('.tc-input').value + '登录成功'
+                e('.tc-container').remove()
+                GuaAlert(title,message)
+            })
+            bindEvent(e('.no-no'),'click',function(event){
+                let message = e('.tc-input').value + '登录失败'
+                e('.tc-container').remove()
+                GuaAlert(title,message)
+            })
+        }
+
+        var GuaActions = function(title, actions, callback) {
+            GuaAlert3(title)
+            for (var i = 0; i < actions.length; i++) {
+                let s = actions[i]
+                let t = `
+                <button class='tc-${i}' type="button" name="button">${s}</button>
+                `
+                appendHtml(e('.tc-message'),t)
+                bindEvent(e(`.tc-${i}`),'click',function(){
+                    e('.tc-container').remove()
+                    GuaAlert3('吃过了')
+                    bindEvent(e('.no-no'),'click',function() {
+                        e('.tc-container').remove()
+                })
+                })
+            }
+            bindEvent(e(`.no-no`),'click',function() {
+                e('.tc-container').remove()
+                GuaAlert3('不吃了')
+                bindEvent(e('.no-no'),'click',function() {
+                    e('.tc-container').remove()
+            })
+        })
+    }
+
+
+
+
+
+
+        bindEvent(e('.tc-tc'),'click',function(event){
+            if (es('div')[1] != undefined) {
+                e('.tc-container').remove()
+            }
+            let title = e('.title').value
+            let actions = e('.message').value.split(',')
+            GuaActions(title,actions)
+        })
+        // bindEvent(e('body'),'click',function(event){
+        //     let self = event.target
+        //     if (self.classList.contains('yes-yes')) {
+        //         e('.tc-container').remove()
+        //     }
+        // })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>fe-10轮播图项目</title>
+    </head>
+    <style>
+        .slideShow {
+            position: relative;
+            margin: 100px auto;
+            width: 790px;
+        }
+
+        .slideImg {
+            width: 790px;
+            height: 340px;
+            margin: 0 auto;
+        }
+
+        .slideImg img {
+            position: absolute;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .slideImg .showImg {
+            opacity:1;
+        }
+
+        .slideButton {
+            text-align: center;
+            display: none;
+        }
+
+        .slideButton .left,.slideButton .right {
+            position: relative;
+            top: -170px;
+            transform: translateY(-61.8%);
+            width: 32px;
+            height: 32px;
+        }
+
+        .slideButton .left {
+            float: left;
+        }
+
+        .slideButton .right {
+            float: right;
+        }
+
+        .slideDot ul {
+            position: absolute;
+            z-index: 1;
+            left: 38%;
+            bottom: 12px;
+            font-size: 0;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background-color: hsla(0,0%,100%,.3)
+        }
+
+        .slideDot li {
+             display: inline-block;
+             margin-right: 10px;
+             width: 12px;
+             height: 12px;
+             border-radius: 100%;
+             background: #fff;
+        }
+
+        .slideDot li:last-child{
+            margin-right: 0;
+        }
+
+        .slideDot .showDot {
+            background: #db192a;
+        }
+
+    </style>
+    <body>
+        <div class="slideShow" data-img=8 data-run=0>
+            <div class="slideImg">
+                <img id="slideImg-0" class="showImg" src="images/1.jpg" alt="商品" />
+                <img id="slideImg-1" src="images/2.jpg" alt="商品" />
+                <img id="slideImg-2" src="images/3.jpg" alt="商品" />
+                <img id="slideImg-3" src="images/4.jpg" alt="商品" />
+                <img id="slideImg-4" src="images/5.jpg" alt="商品" />
+                <img id="slideImg-5" src="images/6.jpg" alt="商品" />
+                <img id="slideImg-6" src="images/7.jpg" alt="商品" />
+                <img id="slideImg-7" src="images/8.jpg" alt="商品" />
+            </div>
+            <div class="slideButton">
+                <img src="images/左.png" alt="" class="left" data-run=-1/>
+                <img src="images/右.png" alt="" class="right" data-run=1/>
+            </div>
+            <div class="slideDot">
+                <ul>
+                    <li id="dot-0" class="dai-dot showDot" data-index=0></li>
+                    <li id="dot-1" class="dai-dot" data-index=1></li>
+                    <li id="dot-2" class="dai-dot" data-index=2></li>
+                    <li id="dot-3" class="dai-dot" data-index=3></li>
+                    <li id="dot-4" class="dai-dot" data-index=4></li>
+                    <li id="dot-5" class="dai-dot" data-index=5></li>
+                    <li id="dot-6" class="dai-dot" data-index=6></li>
+                    <li id="dot-7" class="dai-dot" data-index=7></li>
+                </ul>
+            </div>
+        </div>
+        <script>
+
+        var __mainSlideShow = function() {
+            var e = function(element) {
+                return document.querySelector(element)
+            }
+            var bindEvent = function(element, eventName, callback) {
+                element.addEventListener(eventName, callback)
+            }
+            var bindAll = function(selector, eventName, callback) {
+                var elements = document.querySelectorAll(selector)
+                for(var i = 0; i < elements.length; i++) {
+                    var e = elements[i]
+                    bindEvent(e, eventName, callback)
+                }
+            }
+            var slideShowRun = function(className) {
+                var a = e('.' + className).dataset.run
+                var a1 = e('.slideShow').dataset.run
+                var a2 = e('.slideShow').dataset.img
+                var next = (parseInt(a1) + parseInt(a2) + parseInt(a)) % parseInt(a2)
+                e('.slideShow').dataset.run = next
+                var c = e('.showImg')
+                c.classList.remove('showImg')
+                var a3 = e('#slideImg-' + next)
+                a3.classList.add('showImg')
+                var d = e('.showDot')
+                d.classList.remove('showDot')
+                var a4 = e('#dot-' + next)
+                a4.classList.add('showDot')
+            }
+            bindEvent(e('.left'), 'click', function() {
+                slideShowRun('left')
+            })
+
+            bindEvent(e('.right'), 'click', function() {
+                slideShowRun('right')
+            })
+
+            bindAll('.dai-dot', 'mouseover', function(event) {
+                var self = event.target
+                var z = self.dataset.index
+                e('.slideShow').dataset.run = z
+                var c = e('.showImg')
+                c.classList.remove('showImg')
+                var z1 = e('#slideImg-' + z)
+                z1.classList.add('showImg')
+                var d = e('.showDot')
+                d.classList.remove('showDot')
+                self.classList.add('showDot')
+            })
+
+            var autoRun = setInterval(function(){
+                e('.right').click()
+            }, 3000)
+
+            bindEvent(e('.slideShow'),'mouseover',function() {
+                clearInterval(autoRun)
+                e('.slideButton').style.display = 'block'
+            })
+
+            bindEvent(e('.slideShow'),'mouseout',function() {
+                e('.slideButton').style.display = 'none'
+                autoRun = setInterval(function(){
+                    e('.right').click()
+                }, 3000)
+            })
+        }
+        __mainSlideShow()
+        </script>
+    </body>
+</html>

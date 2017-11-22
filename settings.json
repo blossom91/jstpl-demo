@@ -1,10 +1,9 @@
 {
     "editor.fontSize": 14,
+    "editor.lineHeight": 24,
     "files.autoSave": "onWindowChange",
     "files.associations": {
-        "*.vue": "vue",
-        "*.ejs": "html",
-        "*.js": "javascript"
+        "*.ejs": "html"
     },
     "eslint.autoFixOnSave": true,
     "eslint.options": {
@@ -16,9 +15,14 @@
     },
     "eslint.validate": [
         "javascript",
-        "html",
-        "vue",
-        "vue-html"
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "html",
+            "autoFix": true
+        }
     ],
     "search.exclude": {
         "**/node_modules": true,
@@ -32,12 +36,26 @@
     },
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
-    "workbench.iconTheme": "vscode-icons",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+    "sync.gist": "f275863ce96f62b9c739ae71aa93997e",
+    "sync.lastUpload": "2017-11-16T01:22:56.065Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": true,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
     "workbench.activityBar.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
     "window.openFilesInNewWindow": "on",
     "workbench.editor.enablePreview": false,
     "editor.snippetSuggestions": "top",
-    "terminal.integrated.shell.osx": "/bin/zsh",
-    "workbench.colorTheme": "One Dark Pro"
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "vscode-icons",
+    "explorer.confirmDelete": false,
+    "workbench.statusBar.visible": true
 }

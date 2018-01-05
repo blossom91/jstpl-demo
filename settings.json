@@ -2,17 +2,18 @@
     "editor.fontSize": 14,
     "editor.lineHeight": 24,
     "files.autoSave": "onWindowChange",
-    "files.associations": {
-        "*.ejs": "html"
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 150,
+    "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "vetur.validation.template": false,
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "vue-html": "html"
     },
     "eslint.autoFixOnSave": true,
-    "eslint.options": {
-        "plugins": ["html"],
-        "extensions": [
-            ".js",
-            ".vue"
-        ]
-    },
     "eslint.validate": [
         "javascript",
         {
@@ -24,22 +25,27 @@
             "autoFix": true
         }
     ],
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/dist": true
-    },
-    "emmet.syntaxProfiles": {
-        "javascript": "jsx",
-        "vue": "html",
-        "vue-html": "html"
-    },
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-    "sync.gist": "f275863ce96f62b9c739ae71aa93997e",
-    "sync.lastUpload": "2017-11-16T01:22:56.065Z",
-    "sync.autoDownload": false,
+    "window.openFilesInNewWindow": "on",
+    "workbench.activityBar.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.statusBar.visible": true,
+    "editor.snippetSuggestions": "top",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "python.disablePromptForFeatures": [
+        "pylint"
+    ],
+    "material-icon-theme.showUpdateMessage": false,
+    "sync.gist": "a3aabb2292b8c40e838567ae860f6132",
+    "sync.lastUpload": "2018-01-05T04:33:58.012Z",
+    "sync.autoDownload": true,
     "sync.autoUpload": true,
     "sync.lastDownload": "",
     "sync.forceDownload": false,
@@ -47,15 +53,5 @@
     "sync.host": "",
     "sync.pathPrefix": "",
     "sync.quietSync": false,
-    "sync.askGistName": false,
-    "workbench.activityBar.visible": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "window.openFilesInNewWindow": "on",
-    "workbench.editor.enablePreview": false,
-    "editor.snippetSuggestions": "top",
-    "vsicons.dontShowNewVersionMessage": true,
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.iconTheme": "vscode-icons",
-    "explorer.confirmDelete": false,
-    "workbench.statusBar.visible": true
+    "sync.askGistName": false
 }

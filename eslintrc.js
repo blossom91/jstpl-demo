@@ -1,41 +1,24 @@
 module.exports = {
     root: true,
-    parser: 'babel-eslint',
     parserOptions: {
+        ecmaVersion: 6,
         sourceType: 'module'
     },
     env: {
         browser: true,
         node: true
     },
-    extends: 'eslint:recommended',
-    // required to lint *.vue files
-    plugins: [
-        'html'
-    ],
-    // check if imports actually resolve
-    settings: {
-        'import/resolver': {
-            webpack: {
-                config: 'build/webpack.base.conf.js'
-            }
-        }
-    },
-    // add your custom rules here
+    plugins: ['html'],
     rules: {
-        // don't require .vue extension when importing
-        // 'import/extensions': ['error', 'always', {
-        //     'js': 'never',
-        //     'vue': 'never'
-        // }],
-        // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
         /*
          * Possible Errors
          */
 
         // disallow unnecessary parentheses
-        'no-extra-parens': ['error', 'all', { nestedBinaryExpressions: false }],
+        'no-extra-parens': ['error', 'all', {
+            nestedBinaryExpressions: false
+        }],
 
         // disallow negating the left operand of relational operators
         'no-unsafe-negation': 'error',
@@ -66,10 +49,9 @@ module.exports = {
         'no-caller': 'error',
 
         // disallow empty functions
-        'no-empty-function': 'error',
 
         // disallow unnecessary calls to .bind()
-        'no-extra-bind': 'error',
+        // 'no-extra-bind': 'error',
 
         // disallow unnecessary labels
         'no-extra-label': 'error',
@@ -111,13 +93,13 @@ module.exports = {
         'no-unused-expressions': 'error',
 
         // disallow unnecessary calls to .call() and .apply()
-        'no-useless-call': 'error',
+        // 'no-useless-call': 'error',
 
         // disallow unnecessary concatenation of literals or template literals
         'no-useless-concat': 'error',
 
         // disallow unnecessary escape characters
-        'no-useless-escape': 'error',
+        // 'no-useless-escape': 'error',
 
         // disallow void operators
         'no-void': 'error',
@@ -126,7 +108,7 @@ module.exports = {
         'wrap-iife': 'error',
 
         // require or disallow “Yoda” conditions
-        yoda: 'error',
+        'yoda': 'error',
 
         /*
          * Variables
@@ -139,7 +121,7 @@ module.exports = {
         'no-undef-init': 'error',
         'no-undef': 'off',
         // disallow the use of variables before they are defined
-        'no-use-before-define': 'error',
+        // 'no-use-before-define': 'error',
 
         /*
          * Node.js and CommonJS
@@ -159,7 +141,7 @@ module.exports = {
         'block-spacing': 'error',
 
         // enforce consistent brace style for blocks
-        'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+        // 'brace-style': ['error', '4'],
 
         // require or disallow trailing commas
         'comma-dangle': 'error',
@@ -177,7 +159,9 @@ module.exports = {
         'func-call-spacing': 'error',
 
         // enforce consistent indentation
-        indent: 'error',
+        'indent': ['error', 4, {
+            'SwitchCase': 1
+        }],
 
         // enforce the consistent use of either double or single quotes in JSX attributes
         'jsx-quotes': 'error',
@@ -225,18 +209,16 @@ module.exports = {
         'quote-props': ['error', 'as-needed'],
 
         // enforce the consistent use of either backticks, double, or single quotes
-        quotes: ['error', 'single'],
+        'quotes': ['error', 'single'],
 
         // enforce consistent spacing before and after semicolons
         'semi-spacing': 'error',
 
         // require or disallow semicolons instead of ASI
-        semi: ['error', 'never'],
+        'semi': ['error', 'never'],
 
         // enforce consistent spacing before blocks
         'space-before-blocks': 'error',
-
-        'no-console': 'off',
 
         // enforce consistent spacing before function definition opening parenthesis
         'space-before-function-paren': ['error', 'never'],
@@ -250,12 +232,13 @@ module.exports = {
         // enforce consistent spacing before or after unary operators
         'space-unary-ops': 'error',
 
+        'no-console': 'off',
+
         // enforce consistent spacing after the // or /* in a comment
         'spaced-comment': 'error',
 
         // require or disallow Unicode byte order mark (BOM)
         'unicode-bom': 'error',
-
 
         /*
          * ECMAScript 6
@@ -286,7 +269,7 @@ module.exports = {
         'no-useless-rename': 'error',
 
         // require let or const instead of var
-        // 'no-var': 'error',
+        'no-var': 'error',
 
         // require or disallow method and property shorthand syntax for object literals
         'object-shorthand': 'error',
@@ -304,7 +287,7 @@ module.exports = {
         'prefer-rest-params': 'error',
 
         // require spread operators instead of .apply()
-        'prefer-spread': 'error',
+        // 'prefer-spread': 'error',
 
         // enforce spacing between rest and spread operators and their expressions
         'rest-spread-spacing': 'error',

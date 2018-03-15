@@ -10,29 +10,24 @@
 
 *插件*
 
-1. Atom JavaScript Snippet
-2. Auto Close Tag
-3. Auto Rename Tag
-4. Beautify
-5. Better TOML
-6. Bracket Pair Colorizer
-7. Code Runner
-8. CSS Peek
-9. ESLint(配合eslintrc.js使用)
-10. Git History 
-11. HTML Snippets
-12. htmltagwrap
-13. JavaScript(ES6) code snippets
-14. mssql
-15. Npm Intellisense
-16. OneDark-Pro
-17. Open-in-browser
-18. Output Colorizer
-19. Path Intellisense
-20. Vetur
-21. vscode-icons
-22. Vue 2 Snippets
-23. Setting Sync
+1.  Auto Close Tag
+2.  Auto Rename Tag
+3.  Better TOML
+4.  Code Runner
+5.  ESLint(配合 eslintrc.js 使用)
+6.  HTML Snippets
+7.  htmltagwrap
+8.  JavaScript(ES6) code snippets
+9.  material theme
+10. project manager
+11. One Dark Pro
+12. Open-in-browser
+13. Output Colorizer
+14. Path Intellisense
+15. Vetur
+16. vscode-icons
+17. Vue 2 Snippets
+18. Setting Sync
 
 
 # iterm2

@@ -1,14 +1,21 @@
 {
-    "editor.fontSize": 14,
-    "editor.lineHeight": 24,
     "files.autoSave": "onWindowChange",
     "editor.formatOnSave": true,
+    "editor.wordWrapColumn": 120,
     "prettier.singleQuote": true,
+    "prettier.eslintIntegration": true,
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
     "prettier.semi": false,
     "vetur.validation.template": false,
+    "vetur.validation.style": false,
+    "css.validate": false,
     "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            "wrap_line_length": 120
+        }
+    },
     "emmet.triggerExpansionOnTab": true,
     "emmet.includeLanguages": {
         "vue-html": "html"
@@ -32,26 +39,27 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.enablePreview": false,
-    "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.statusBar.visible": true,
     "editor.snippetSuggestions": "top",
     "editor.minimap.enabled": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "python.disablePromptForFeatures": [
-        "pylint"
-    ],
+    // "python.disablePromptForFeatures": [
+    //     "pylint"
+    // ],
     "material-icon-theme.showUpdateMessage": false,
     "sync.gist": "a3aabb2292b8c40e838567ae860f6132",
-    "sync.lastUpload": "2018-01-05T04:58:58.594Z",
+    "sync.lastUpload": "2018-03-05T15:26:48.882Z",
     "sync.autoDownload": true,
-    "sync.autoUpload": true,
-    "sync.lastDownload": "",
+    "sync.autoUpload": false,
+    "sync.lastDownload": "2018-03-14T07:36:59.025Z",
     "sync.forceDownload": false,
-    "sync.anonymousGist": false,
     "sync.host": "",
     "sync.pathPrefix": "",
     "sync.quietSync": false,
-    "sync.askGistName": false
+    "sync.askGistName": false,
+    "workbench.colorTheme": "One Dark Pro",
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true
 }

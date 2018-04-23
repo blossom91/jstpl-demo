@@ -34,3 +34,27 @@
 
 > 安装 oh my zsh
 > profiles => colors => 改为(solarized dark) && text => 取消勾选(Draw bold text in bright colors)
+
+
+# Atom
+
+> tab 默认换为 `4` 格  | tab类型改为 `soft`  | 勾选 `显示缩进指示线`| 隐藏不可见文件需要核心插件`tree-view`打开hide功能
+
+---
+
+*插件*
+
+1. Autocomplete Paths
+2. emmet
+3. file-icons
+4. highlight-selected
+5. hyperclick js-hyperclick
+6. language-vue
+7. minimap
+8. open-in-browser
+9. script
+10. chinese(汉化包)
+11. atom-beautify
+12. atom-ternjs
+13. language-babel
+14. prettier-atom

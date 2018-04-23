@@ -1,12 +1,15 @@
 {
+    "editor.fontSize": 13,
+    "editor.lineHeight": 22,
     "files.autoSave": "onWindowChange",
     "editor.formatOnSave": true,
     "editor.wordWrapColumn": 120,
-    "prettier.singleQuote": true,
     "prettier.eslintIntegration": true,
+    "prettier.singleQuote": true,
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
     "prettier.semi": false,
+    "prettier.trailingComma": "es5",
     "vetur.validation.template": false,
     "vetur.validation.style": false,
     "css.validate": false,
@@ -20,7 +23,6 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
-    "eslint.autoFixOnSave": true,
     "eslint.validate": [
         "javascript",
         {
@@ -32,6 +34,7 @@
             "autoFix": true
         }
     ],
+    "eslint.autoFixOnSave": true,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
@@ -50,10 +53,10 @@
     // ],
     "material-icon-theme.showUpdateMessage": false,
     "sync.gist": "a3aabb2292b8c40e838567ae860f6132",
-    "sync.lastUpload": "2018-03-05T15:26:48.882Z",
+    "sync.lastUpload": "2018-04-23T15:00:12.708Z",
     "sync.autoDownload": true,
     "sync.autoUpload": false,
-    "sync.lastDownload": "2018-03-14T07:36:59.025Z",
+    "sync.lastDownload": "2018-04-23T07:21:46.715Z",
     "sync.forceDownload": false,
     "sync.host": "",
     "sync.pathPrefix": "",

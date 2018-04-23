@@ -9,6 +9,7 @@ module.exports = {
         browser: true,
         node: true,
     },
+    parser: 'babel-eslint',
     plugins: ['html', 'eslint-plugin-html'],
     rules: {
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
@@ -218,7 +219,7 @@ module.exports = {
         'quote-props': ['error', 'as-needed'],
 
         // enforce the consistent use of either backticks, double, or single quotes
-        quotes: ['error', 'single'],
+        quotes: ['error', 'single', { avoidEscape: true }],
 
         // enforce consistent spacing before and after semicolons
         'semi-spacing': 'error',
@@ -244,7 +245,7 @@ module.exports = {
         'no-console': 'off',
 
         // enforce consistent spacing after the // or /* in a comment
-        'spaced-comment': 'error',
+        'spaced-comment': ['error', 'always'],
 
         // require or disallow Unicode byte order mark (BOM)
         'unicode-bom': 'error',
@@ -287,7 +288,7 @@ module.exports = {
         'prefer-arrow-callback': 'error',
 
         // require const declarations for variables that are never reassigned after declared
-        'prefer-const': 'error',
+        // 'prefer-const': ['error', { 'destructuring': 'any' }],
 
         // disallow parseInt() in favor of binary, octal, and hexadecimal literals
         'prefer-numeric-literals': 'error',

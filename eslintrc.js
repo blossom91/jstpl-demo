@@ -2,13 +2,14 @@ module.exports = {
     root: true,
     parserOptions: {
         ecmaVersion: 6,
-        sourceType: 'module'
+        sourceType: 'module',
     },
+    // extends: ['prettier'],
     env: {
         browser: true,
-        node: true
+        node: true,
     },
-    plugins: ['html'],
+    plugins: ['html', 'eslint-plugin-html'],
     rules: {
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
         /*
@@ -16,9 +17,13 @@ module.exports = {
          */
 
         // disallow unnecessary parentheses
-        'no-extra-parens': ['error', 'all', {
-            nestedBinaryExpressions: false
-        }],
+        'no-extra-parens': [
+            'error',
+            'all',
+            {
+                nestedBinaryExpressions: false,
+            },
+        ],
 
         // disallow negating the left operand of relational operators
         'no-unsafe-negation': 'error',
@@ -108,7 +113,7 @@ module.exports = {
         'wrap-iife': 'error',
 
         // require or disallow “Yoda” conditions
-        'yoda': 'error',
+        yoda: 'error',
 
         /*
          * Variables
@@ -144,7 +149,7 @@ module.exports = {
         // 'brace-style': ['error', '4'],
 
         // require or disallow trailing commas
-        'comma-dangle': 'error',
+        'comma-dangle': ['error', 'always-multiline'],
 
         // enforce consistent spacing before and after commas
         'comma-spacing': 'error',
@@ -159,9 +164,13 @@ module.exports = {
         'func-call-spacing': 'error',
 
         // enforce consistent indentation
-        'indent': ['error', 4, {
-            'SwitchCase': 1
-        }],
+        indent: [
+            'error',
+            4,
+            {
+                SwitchCase: 1,
+            },
+        ],
 
         // enforce the consistent use of either double or single quotes in JSX attributes
         'jsx-quotes': 'error',
@@ -209,13 +218,13 @@ module.exports = {
         'quote-props': ['error', 'as-needed'],
 
         // enforce the consistent use of either backticks, double, or single quotes
-        'quotes': ['error', 'single'],
+        quotes: ['error', 'single'],
 
         // enforce consistent spacing before and after semicolons
         'semi-spacing': 'error',
 
         // require or disallow semicolons instead of ASI
-        'semi': ['error', 'never'],
+        semi: ['error', 'never'],
 
         // enforce consistent spacing before blocks
         'space-before-blocks': 'error',
@@ -296,6 +305,6 @@ module.exports = {
         'template-curly-spacing': 'error',
 
         // require or disallow spacing around the * in yield* expressions
-        'yield-star-spacing': 'error'
-    }
+        'yield-star-spacing': 'error',
+    },
 }

@@ -157,7 +157,7 @@ module.exports = {
     'no-new-object': 'error',
 
     // disallow trailing whitespace at the end of lines
-    'no-trailing-spaces': 'error',
+    'no-trailing-spaces': 'off',
 
     // disallow ternary operators when simpler alternatives exist
     'no-unneeded-ternary': 'error',
@@ -187,7 +187,7 @@ module.exports = {
     'space-before-blocks': 'error',
 
     // enforce consistent spacing before function definition opening parenthesis
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': 'off',
 
     // enforce consistent spacing inside parentheses
     'space-in-parens': 'error',

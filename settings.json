@@ -1,108 +1,103 @@
 {
-  "editor.formatOnSave": true,
-  "python.pythonPath": "python3",
-  "python.linting.flake8Args": ["--max-line-length=120"],
-  "python.maxNumberOfProblems": 120,
-  "python.linting.maxNumberOfProblems": 120,
-  "python.linting.flake8Enabled": true,
-  "files.autoSave": "onWindowChange",
-  "editor.wordWrapColumn": 120,
-  "prettier.eslintIntegration": true,
-  "prettier.singleQuote": true,
-  "prettier.printWidth": 120,
-  "prettier.tabWidth": 4,
-  "prettier.semi": false,
-  "prettier.trailingComma": "es5",
-  "css.validate": false,
-  "emmet.triggerExpansionOnTab": true,
-  "emmet.includeLanguages": {
-    "vue-html": "html",
-    "wxml": "html"
-  },
-  "eslint.nodePath": "/usr/local/bin/node",
-  "eslint.validate": ["javascript", "vue", "html"],
-  "git.confirmSync": false,
-  "git.enableSmartCommit": true,
-  "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-  "window.openFilesInNewWindow": "on",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.editor.enablePreview": false,
-  "workbench.iconTheme": "material-icon-theme",
-  "editor.snippetSuggestions": "top",
-  "editor.minimap.enabled": false,
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "material-icon-theme.showUpdateMessage": false,
-  "sync.gist": "a3aabb2292b8c40e838567ae860f6132",
-  "sync.autoDownload": false,
-  "sync.autoUpload": true,
-  "sync.forceDownload": false,
-  "sync.quietSync": false,
-  "sync.askGistName": false,
-  "sync.removeExtensions": true,
-  "sync.syncExtensions": true,
-  "window.zoomLevel": 0,
-  "files.associations": {
-    "*.cjson": "jsonc",
-    "*.wxss": "css",
-    "*.wxs": "javascript"
-  },
-  "minapp-vscode.disableAutoConfig": true,
-  "git.autofetch": true,
-  "editor.cursorStyle": "line-thin",
-  "editor.wordWrap": "bounded",
-  "workbench.activityBar.visible": false,
-  "workbench.statusBar.feedback.visible": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "breadcrumbs.enabled": true,
-  "workbench.view.alwaysShowHeaderActions": true,
-  "breadcrumbs.symbolPath": "off",
-  "workbench.editor.tabCloseButton": "off",
-  "update.showReleaseNotes": false,
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "editor.lineNumbers": "off",
-  "workbench.editor.tabSizing": "shrink",
-  "workbench.editor.highlightModifiedTabs": true,
-  "window.nativeTabs": true,
-  "window.restoreWindows": "folders",
-  "outline.problems.badges": false,
-  "search.exclude": {
-    "**/dist": true
-  },
-  "terminal.integrated.copyOnSelection": true,
-  "css.lint.duplicateProperties": "error",
-  "workbench.colorTheme": "Monokai Dimmed",
-  "breadcrumbs.filePath": "off",
-  "vetur.format.defaultFormatter.html": "prettier",
-  "vetur.format.options.tabSize": 4,
-  "vetur.format.defaultFormatterOptions": {
-    "js-beautify-html": {
-      "wrap_attributes": "force-expand-multiline"
+    "python.pythonPath": "python3",
+    "python.linting.flake8Args": ["--max-line-length=120"],
+    "python.maxNumberOfProblems": 120,
+    "python.linting.maxNumberOfProblems": 120,
+    "python.linting.flake8Enabled": true,
+    "files.autoSave": "onWindowChange",
+    "editor.wordWrapColumn": 120,
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "prettier.trailingComma": "es5",
+    "css.validate": false,
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "wxml": "html"
     },
-    "prettyhtml": {
-      "printWidth": 100,
-      "singleQuote": false,
-      "wrapAttributes": false,
-      "sortAttributes": false
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+    "window.openFilesInNewWindow": "on",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.enablePreview": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.snippetSuggestions": "top",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "material-icon-theme.showUpdateMessage": false,
+    "sync.gist": "a3aabb2292b8c40e838567ae860f6132",
+    "sync.autoDownload": false,
+    "sync.autoUpload": true,
+    "sync.forceDownload": false,
+    "sync.quietSync": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true,
+    "window.zoomLevel": 0,
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript"
     },
-    "prettier": {
-      "eslintIntegration": true,
-      "singleQuote": true,
-      "printWidth": 120,
-      "semi": false,
-      "trailingComma": "es5"
-    }
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "minapp-vscode.disableAutoConfig": true,
+    "git.autofetch": true,
+    "editor.cursorStyle": "line-thin",
+    "editor.wordWrap": "bounded",
+    "workbench.activityBar.visible": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "breadcrumbs.enabled": true,
+    "workbench.view.alwaysShowHeaderActions": true,
+    "breadcrumbs.symbolPath": "off",
+    "workbench.editor.tabCloseButton": "off",
+    "update.showReleaseNotes": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.lineNumbers": "off",
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.highlightModifiedTabs": true,
+    "window.nativeTabs": true,
+    "window.restoreWindows": "folders",
+    "outline.problems.badges": false,
+    "search.exclude": {
+        "**/dist": true
+    },
+    "terminal.integrated.copyOnSelection": true,
+    "css.lint.duplicateProperties": "error",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "breadcrumbs.filePath": "off",
+    "vetur.format.defaultFormatter.html": "prettier",
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            "wrap_attributes": "force-expand-multiline"
+        },
+        "prettier": {
+            "eslintIntegration": true,
+            "singleQuote": true,
+            "printWidth": 120,
+            "semi": false,
+            "trailingComma": "es5"
+        }
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "extensions.autoCheckUpdates": false,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "diffEditor.ignoreTrimWhitespace": false
 }

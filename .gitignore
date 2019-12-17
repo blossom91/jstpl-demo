@@ -1,0 +1,14 @@
+.DS_Store
+dist/*
+build/*
+!build/icons
+coverage
+node_modules/
+npm-debug.log
+npm-debug.log.*
+thumbs.db
+!.gitkeep
+yarn*
+yarn.lock
+package-lock.json
+.idea

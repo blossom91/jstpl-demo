@@ -6,12 +6,7 @@
     "python.linting.flake8Enabled": true,
     "files.autoSave": "onWindowChange",
     "editor.wordWrapColumn": 120,
-    "prettier.singleQuote": true,
-    "prettier.printWidth": 120,
-    "prettier.tabWidth": 4,
-    "prettier.semi": false,
-    "prettier.trailingComma": "es5",
-    "css.validate": false,
+    "css.validate": true,
     "emmet.triggerExpansionOnTab": true,
     "emmet.includeLanguages": {
         "vue-html": "html",
@@ -42,15 +37,10 @@
         "*.wxss": "css",
         "*.wxs": "javascript"
     },
-    "minapp-vscode.disableAutoConfig": true,
     "git.autofetch": true,
     "editor.cursorStyle": "line-thin",
     "editor.wordWrap": "bounded",
     "workbench.activityBar.visible": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "breadcrumbs.enabled": true,
     "workbench.view.alwaysShowHeaderActions": true,
     "breadcrumbs.symbolPath": "off",
     "workbench.editor.tabCloseButton": "off",
@@ -66,38 +56,25 @@
     "search.exclude": {
         "**/dist": true
     },
-    "terminal.integrated.copyOnSelection": true,
     "css.lint.duplicateProperties": "error",
     "workbench.colorTheme": "Monokai Dimmed",
     "breadcrumbs.filePath": "off",
-    "vetur.format.defaultFormatter.html": "prettier",
-    "vetur.format.options.tabSize": 4,
-    "vetur.format.defaultFormatterOptions": {
-        "js-beautify-html": {
-            "wrap_attributes": "force-expand-multiline"
-        },
-        "prettier": {
-            "eslintIntegration": true,
-            "singleQuote": true,
-            "printWidth": 120,
-            "semi": false,
-            "trailingComma": "es5"
-        }
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
+    "prettier.useEditorConfig": false,
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5",
+    "prettier.semi": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "C_Cpp.updateChannel": "Insiders",
     "extensions.autoCheckUpdates": false,
     "javascript.implicitProjectConfig.experimentalDecorators": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "terminal.integrated.shell.osx": "/bin/zsh",
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }
+

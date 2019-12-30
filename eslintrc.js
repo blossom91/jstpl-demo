@@ -1,24 +1,24 @@
+// eslint 6.0版本有模块处理bug  需要安装5.16.0版本 也依赖 semver模块
+// npm install -g eslint@5.16.0 semver eslint-plugin-vue
 module.exports = {
-    root: true,
-    parser: 'babel-eslint',
-    parserOptions: {
-        sourceType: 'module',
-    },
     env: {
         browser: true,
+        es6: true,
         node: true,
     },
-    plugins: ['html', 'eslint-plugin-html'],
+    extends: ['eslint:recommended', 'plugin:vue/essential'],
+    parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+    },
+    plugins: ['vue'],
     rules: {
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        /*
+         * Possible Errors
+         */
+
         // disallow unnecessary parentheses
-        'no-extra-parens': [
-            'error',
-            'all',
-            {
-                nestedBinaryExpressions: false,
-            },
-        ],
 
         // disallow negating the left operand of relational operators
         'no-unsafe-negation': 'error',
@@ -30,6 +30,9 @@ module.exports = {
          * Best Practices
          */
 
+        // enforce return statements in callbacks of array methods
+        'array-callback-return': 'error',
+
         // enforce consistent brace style for all control statements
         curly: ['error', 'multi-line'],
 
@@ -39,10 +42,16 @@ module.exports = {
         // enforce dot notation whenever possible
         'dot-notation': 'error',
 
+        // require the use of === and !==
+        // 'eqeqeq': ['error', 'smart'],
+
         // disallow the use of arguments.caller or arguments.callee
         'no-caller': 'error',
 
         // disallow empty functions
+
+        // disallow unnecessary calls to .bind()
+        // 'no-extra-bind': 'error',
 
         // disallow unnecessary labels
         'no-extra-label': 'error',
@@ -80,8 +89,20 @@ module.exports = {
         // disallow throwing literals as exceptions
         'no-throw-literal': 'error',
 
+        // disallow unused expressions
+        'no-unused-expressions': 'off',
+
+        // disallow unnecessary calls to .call() and .apply()
+        // 'no-useless-call': 'error',
+
         // disallow unnecessary concatenation of literals or template literals
         'no-useless-concat': 'error',
+
+        // disallow unnecessary escape characters
+        'no-useless-escape': 'off',
+
+        // disallow void operators
+        'no-void': 'error',
 
         // require parentheses around immediate function invocations
         'wrap-iife': 'error',
@@ -99,6 +120,8 @@ module.exports = {
         // disallow initializing variables to undefined
         'no-undef-init': 'error',
         'no-undef': 'off',
+        // disallow the use of variables before they are defined
+        // 'no-use-before-define': 'error',
 
         /*
          * Node.js and CommonJS
@@ -117,8 +140,10 @@ module.exports = {
         // enforce consistent spacing inside single-line blocks
         'block-spacing': 'error',
 
+        // enforce consistent brace style for blocks
+        // 'brace-style': ['error', '4'],
+
         // require or disallow trailing commas
-        'comma-dangle': ['error', 'always-multiline'],
 
         // enforce consistent spacing before and after commas
         'comma-spacing': 'error',
@@ -141,6 +166,9 @@ module.exports = {
         // enforce consistent spacing before and after keywords
         'keyword-spacing': 'error',
 
+        // enforce consistent linebreak style
+        'linebreak-style': 'error',
+
         // require or disallow newlines around directives
         'lines-around-directive': 'error',
 
@@ -157,7 +185,7 @@ module.exports = {
         'no-new-object': 'error',
 
         // disallow trailing whitespace at the end of lines
-        'no-trailing-spaces': 'off',
+        'no-trailing-spaces': 'error',
 
         // disallow ternary operators when simpler alternatives exist
         'no-unneeded-ternary': 'error',
@@ -187,7 +215,7 @@ module.exports = {
         'space-before-blocks': 'error',
 
         // enforce consistent spacing before function definition opening parenthesis
-        'space-before-function-paren': 'off',
+        'space-before-function-paren': ['error', 'never'],
 
         // enforce consistent spacing inside parentheses
         'space-in-parens': 'error',
@@ -225,17 +253,32 @@ module.exports = {
         // disallow unnecessary computed property keys in object literals
         'no-useless-computed-key': 'error',
 
+        // disallow unnecessary constructors
+        'no-useless-constructor': 'error',
+
         // disallow renaming import, export, and destructured assignments to the same name
         'no-useless-rename': 'error',
 
         // require let or const instead of var
         'no-var': 'error',
 
+        // require or disallow method and property shorthand syntax for object literals
+        'object-shorthand': 'error',
+
         // require arrow functions as callbacks
         'prefer-arrow-callback': 'error',
 
+        // require const declarations for variables that are never reassigned after declared
+        // 'prefer-const': ['error', { 'destructuring': 'any' }],
+
         // disallow parseInt() in favor of binary, octal, and hexadecimal literals
         'prefer-numeric-literals': 'error',
+
+        // require rest parameters instead of arguments
+        'prefer-rest-params': 'error',
+
+        // require spread operators instead of .apply()
+        // 'prefer-spread': 'error',
 
         // enforce spacing between rest and spread operators and their expressions
         'rest-spread-spacing': 'error',
@@ -245,5 +288,37 @@ module.exports = {
 
         // require or disallow spacing around the * in yield* expressions
         'yield-star-spacing': 'error',
+
+        /* 有争议 */
+        // 简单箭头函数不需要{}
+        'arrow-body-style': 'off',
+
+        // 对象函数直接定义
+        'object-shorthand': 'off',
+
+        // 参数一定要使用
+        'no-unused-vars': 'off',
+
+        // typeof
+        'valid-typeof': 'off',
+
+        // 'comma-dangle': ['error', 'always-multiline'],
+
+        // enforce consistent indentation
+        // indent: [
+        //     'error',
+        //     4,
+        //     {
+        //         SwitchCase: 1,
+        //     },
+        // ],
+
+        // 'no-extra-parens': [
+        //     'error',
+        //     'all',
+        //     {
+        //         nestedBinaryExpressions: false,
+        //     },
+        // ],
     },
 }
